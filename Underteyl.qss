@@ -1,0 +1,1418 @@
+/******************************************************************************/
+/*   Copyright (C) 2014-2015 by Philippe Groarke <philippe.groarke@gmail.com> */
+/*                                                                            */
+/*                                                                            */
+/*   This program is free software: you can redistribute it and/or modify     */
+/*   it under the terms of the GNU General Public License as published by     */
+/*   the Free Software Foundation, either version 2 of the License, or        */
+/*   (at your option) any later version.                                      */
+/*                                                                            */
+/*   This program is distributed in the hope that it will be useful,          */
+/*   but WITHOUT ANY WARRANTY; without even the implied warranty of           */
+/*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            */
+/*   GNU General Public License for more details.                             */
+/*                                                                            */
+/*                                                                            */
+/*   You should have received a copy of the GNU General Public License        */
+/*   along with this program.  If not, see <http://www.gnu.org/licenses/>.    */
+/******************************************************************************/
+
+/* Colors */
+
+OBSThemeMeta {
+    dark: "true";
+    author: 'Liu "Dobby233Liu" Wenyuan';
+}
+
+/* Custom theme information.  This will set the application's QPalette, as
+ * well as pass to QML via the OBSTheme object.
+ * Can also use OBSTheme::disabled, OBSTheme::active, and OBSTheme::inactive.
+ * Using it without will set all three (making 'active' a bit redundant) */
+OBSTheme {
+    window: rgb(0,0,0);
+    windowText: rgb(255, 255, 255);
+
+    base: rgb(0, 0, 0);
+    alternateBase: rgb(0, 0, 0);
+
+    text: rgb(255,255,255);
+    
+    button: rgb(0, 0, 0);
+    buttonText: rgb(255, 255, 255);
+
+    brightText: rgb(255, 251, 0);
+
+    light: rgb(36, 36, 36);
+    mid: rgb(24, 24, 24);
+    shadow: rgb(18, 18, 18);
+    dark: rgb(0, 0, 0);
+
+    primary: rgb(255, 251, 0);
+    primaryLight: rgb(255, 251, 0);
+    primaryDark: rgb(255, 251, 0);
+
+	secondary: rgb(255, 251, 0);
+
+    highlight: rgb(255, 251, 0);
+    highlightText: rgb(255, 255, 255);
+
+    link: rgb(20, 20, 235);
+    linkVisited: rgb(0, 0, 153);
+}
+
+OBSTheme::disabled {
+    windowText: rgb(135, 135, 135);
+    text: rgb(135, 135, 135);
+    button: rgb(0, 0, 0);
+    
+    buttonText: rgb(135, 135, 135);
+    brightText: rgb(230, 226, 0);
+}
+
+OBSTheme::inactive {
+    highlight: rgb(240, 236, 39);
+    highlightText: rgb(135, 135, 135);
+}
+
+/* Default widget style, we override only what is needed. */
+
+QWidget {
+    alternate-background-color: palette(base);
+    color: palette(text);
+    selection-border-color: palette(highlight);
+    selection-color: palette(base);
+    font-size: 10pt;
+    font-family: 'Open Sans', '.AppleSystemUIFont', Helvetica, Arial, 'MS Shell Dlg', sans-serif;
+}
+
+QWidget:disabled {
+    color: rgb(135, 135, 135);
+}
+
+/* Container windows */
+
+QDialog,
+QMainWindow,
+QStatusBar,
+QMenuBar,
+QMenu {
+    background-color: palette(window);
+}
+
+/* macOS Separator Fix */
+
+QMainWindow::separator {
+    background: transparent;
+    width: 4px;
+    height: 4px;
+}
+
+/* General Widgets */
+
+QLabel,
+QGroupBox,
+QCheckBox {
+    background: transparent;
+}
+
+QComboBox,
+QCheckBox,
+QPushButton,
+QSpinBox,
+QDoubleSpinBox {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+QListWidget QWidget,
+SceneTree QWidget,
+SourceTree QWidget {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+* [frameShape="1"], * [frameShape="2"], * [frameShape="3"], * [frameShape="4"], * [frameShape="5"], * [frameShape="6"] {
+    border: 1px solid palette(dark);
+}
+
+
+/* Misc */
+
+QAbstractItemView, QStackedWidget#stackedMixerArea QWidget {
+    background-color: palette(base);
+}
+
+QToolTip {
+    background-color: palette(base);
+    color: palette(text);
+    border: none;
+}
+
+/* Context Menu */
+
+QMenu::icon {
+    left: 4px;
+}
+
+QMenu::separator {
+    background: palette(light);
+    height: 1px;
+    margin: 2px 4px;
+}
+
+QMenu::item:disabled {
+    color: rgb(153,153,153);
+    background: transparent;
+}
+
+QMenu::right-arrow {
+    image: url(./Dark/expand.svg);
+}
+
+/* Top Menu Bar Items */
+QMenuBar::item {
+	border: 2px solid white;
+    padding: 6px 8px;
+    margin: 2px;
+}
+
+QMenuBar::item:selected {
+	border-color: palette(highlight);
+	color: palette(highlight);
+}
+
+QListWidget::item {
+    color: palette(text);
+}
+
+QListWidget,
+QMenu,
+SceneTree,
+SourceTree {
+    padding: 2px;
+}
+
+QListWidget::item,
+SourceTreeItem,
+QMenu::item,
+SceneTree::item {
+    padding: 6px 8px;
+}
+
+QMenu::item {
+    padding-right: 20px;
+}
+
+QListWidget::item,
+QMenu::item,
+SceneTree::item,
+SourceTreeItem {
+    color: palette(text);
+	border: 2px solid white;
+    border-radius: 0;
+}
+QListWidget::item,
+QMenu::item,
+SceneTree::item {
+    margin: 2px 0;
+    padding: 6px;
+}
+SourceTree {
+    border: 0;
+    border-radius: 0;
+}
+
+QMenu::item:selected,
+QListWidget::item:selected,
+SceneTree::item:selected,
+SourceTreeItem:selected,
+QMenu::item:hover,
+QListWidget::item:hover,
+SceneTree::item:hover,
+SourceTreeItem:hover,
+QMenu::item:selected:hover,
+QListWidget::item:selected:hover,
+SceneTree::item:selected:hover,
+SourceTreeItem:selected:hover {
+    border-color: palette(highlight);
+    color: palette(highlight);
+}
+
+QListWidget::item:disabled,
+QListWidget::item:disabled:hover {
+    border-color: rgb(153,153,153);
+    color: rgb(153,153,153);
+}
+
+QListWidget QLineEdit,
+SceneTree QLineEdit,
+SourceTree QLineEdit {
+    padding: 0px;
+    padding-bottom: 2px;
+    margin: 0px;
+    border: 1px solid #FFF;
+}
+
+QListWidget QLineEdit:focus,
+SceneTree QLineEdit:focus,
+SourceTree QLineEdit:focus {
+    border-color: palette(highlight);
+}
+
+/* Settings QList */
+
+/* Settings properties view */
+OBSBasicSettings #PropertiesContainer {
+    background-color: rgb(64, 64, 64);
+}
+
+/* Dock Widget */
+OBSDock > QWidget {
+    background: palette(dark);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+OBSDock QFrame {
+    background: palette(dark);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+OBSDock QLabel {
+    background: transparent;
+}
+
+OBSDock QComboBox,
+OBSDock QPushButton {
+    margin: 1px 2px;
+}
+
+QDockWidget {
+    font-size: 10.5pt;
+    font-weight: bold;
+
+    titlebar-close-icon: url('./Dark/close.svg');
+    titlebar-normal-icon: url('./Dark/popout.svg');
+}
+
+QDockWidget::title {
+    text-align: left;
+    background-color: palette(base);
+    padding: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background: palette(light);
+    border-radius: 0;
+}
+
+QDockWidget::close-button, QDockWidget::float-button {
+    border: 1px solid white;
+    background: transparent;
+    padding: 1px;
+    opacity: .5;
+}
+
+QDockWidget::close-button:hover, QDockWidget::float-button:hover {
+    border-color: palette(highlight);
+    opacity: 1;
+}
+
+QDockWidget::close-button:pressed, QDockWidget::float-button:pressed {
+    padding: 1px -1px -1px 1px;
+}
+
+OBSBasicStatusBar {
+    margin-top: 8px;
+}
+
+/* Group Box */
+
+QGroupBox {
+    background: transparent;
+    padding-top: 32px;
+    padding-bottom: 8px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    border: 0;
+}
+
+QGroupBox::title {
+	color: rgb(255, 255, 255);
+    subcontrol-origin: margin;
+    left: 8px;
+    top: 8px;
+}
+
+
+/* ScrollBars */
+
+::corner {
+    background-color: palette(window);
+    border: none;
+}
+
+QScrollBar:vertical {
+    background-color: transparent;
+    width: 8px;
+    margin: 0px;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+    height: 0px;
+}
+
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical, QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    border: none;
+    background: none;
+    color: none;
+}
+
+QScrollBar:horizontal {
+    background-color: transparent;
+    height: 8px;
+    margin: 0px;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    border: none;
+    background: none;
+    width: 0px;
+}
+
+QScrollBar::left-arrow:horizontal, QScrollBar::right-arrow:horizontal, QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    border: none;
+    background: none;
+    color: none;
+}
+
+QScrollBar::handle {
+    background-color: rgb(118,121,124);
+    margin: 2px;
+    border: 1px solid rgb(118,121,124);
+}
+
+QScrollBar::handle:hover {
+    background-color: rgb(199, 199, 199);
+    border-color: rgb(199, 199, 199);
+}
+
+QScrollBar::handle:pressed {
+    background-color: rgb(118,121,124);
+    border-color: rgb(118,121,124);
+}
+
+QScrollBar::handle:vertical {
+    min-height: 20px;   
+}
+
+QScrollBar::handle:horizontal {
+    min-width: 20px;
+}
+
+/* Source Context Bar */
+
+#contextContainer {
+  background-color: palette(dark);
+  margin-top: 4px;
+}
+
+#contextContainer QPushButton {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+QPushButton#sourcePropertiesButton {
+    qproperty-icon: url(./Dark/settings/general.svg);
+}
+
+QPushButton#sourceFiltersButton {
+    qproperty-icon: url(./Dark/filter.svg);
+}
+
+/* Scenes and Sources toolbar */
+
+QToolBar {
+    border: 2px solid palette(mid);
+    padding: 4px;
+}
+
+QPushButton[toolButton="true"],
+QToolButton  {
+    padding: 4px 4px;
+    margin: 0 1px;
+    border: 2px solid white;
+}
+
+QPushButton[toolButton="true"]:disabled,
+QToolButton:disabled {
+	background-color: transparent;
+}
+
+QPushButton[toolButton="true"]:last-child,
+QToolButton:last-child {
+    margin-right: 0px;
+}
+
+QToolButton:hover {
+    border-color: palette(highlight);
+    color: palette(highlight);
+}
+
+QToolButton:pressed {
+    border-color: palette(highlight);
+    color: palette(highlight);
+}
+
+* [themeID="addIconSmall"] {
+    qproperty-icon: url(./Dark/plus.svg);
+}
+
+* [themeID="removeIconSmall"] {
+    qproperty-icon: url(./Dark/trash.svg);
+}
+
+* [themeID="clearIconSmall"] {
+    qproperty-icon: url(./Dark/entry-clear.svg);
+}
+
+* [themeID="propertiesIconSmall"] {
+    qproperty-icon: url(./Dark/settings/general.svg);
+}
+
+* [themeID="configIconSmall"] {
+    qproperty-icon: url(./Dark/settings/general.svg);
+}
+
+* [themeID="menuIconSmall"] {
+    qproperty-icon: url(./Dark/dots-vert.svg);
+}
+
+* [themeID="refreshIconSmall"] {
+    qproperty-icon: url(./Dark/refresh.svg);
+}
+
+* [themeID="cogsIcon"] {
+    qproperty-icon: url(./Dark/cogs.svg);
+}
+
+#sourceInteractButton {
+    qproperty-icon: url(./Dark/interact.svg);
+}
+
+* [themeID="upArrowIconSmall"] {
+    qproperty-icon: url(./Dark/up.svg);
+}
+
+* [themeID="downArrowIconSmall"] {
+    qproperty-icon: url(./Dark/down.svg);
+}
+
+* [themeID="pauseIconSmall"] {
+    qproperty-icon: url(./Dark/media-pause.svg);
+}
+
+* [themeID="filtersIcon"] {
+    qproperty-icon: url(./Dark/filter.svg);
+}
+
+QToolBarExtension {
+    background: palette(button);
+    min-width: 12px;
+    max-width: 12px;
+    padding: 4px 0px;
+    margin-left: 0px;
+
+    qproperty-icon: url(./Dark/dots-vert.svg);
+}
+
+
+/* Tab Widget */
+
+QTabWidget::pane { /* The tab widget frame */
+    border-top: 4px solid palette(base);
+}
+
+QTabWidget::tab-bar {
+    alignment: left;
+}
+
+QTabBar QToolButton {
+    background: rgb(0, 0, 0);
+    border: none;
+}
+
+QTabBar::tab:top {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+QTabBar::tab:bottom {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+QTabBar::tab {
+    border: 2px solid white;
+    color: palette(text);
+    padding: 8px 12px;
+    min-width: 50px;
+    margin: 1px 2px;
+}
+
+QTabBar::tab:pressed {
+    background: palette(highlight);
+}
+
+QTabBar::tab:hover {
+    border-color: palette(highlight);
+    color: palette(highlightText);
+}
+
+QTabBar::tab:selected {
+    background: palette(highlight);
+    color: palette(highlightText);
+}
+
+QTabBar::tab:top:selected {
+    border-bottom: 2px solid palette(highlight);
+}
+
+QTabBar::tab:bottom:selected {
+    border-top: 2px solid palette(highlight);
+}
+
+QTabBar QToolButton {
+    background: palette(button);
+    min-width: 16px;
+    padding: 0px;
+}
+
+/* ComboBox */
+
+QComboBox,
+QDateTimeEdit {
+    background-color: palette(base);
+    border: 2px solid rgb(255, 255, 255);
+    padding: 4px;
+    padding-left: 10px;
+}
+
+QComboBox:hover,
+QComboBox:selected,
+QDateTimeEdit:hover,
+QDateTimeEdit:selected {
+    background-color: palette(base);
+	border: 2px solid palette(highlight);
+}
+
+QComboBox::drop-down,
+QDateTimeEdit::drop-down {
+    border:none;
+    border-left: 1px solid rgb(0, 0, 0);
+    width: 20px;
+}
+
+QComboBox::down-arrow,
+QDateTimeEdit::down-arrow {
+    qproperty-alignment: AlignTop;
+    image: url(./Dark/updown.svg);
+    width: 100%;
+}
+
+QComboBox:on,
+QDateTimeEdit:on {
+    background-color: rgb(0, 0, 0);
+}
+
+QComboBox::drop-down:editable,
+QDateTimeEdit::drop-down:editable {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+QComboBox::down-arrow:editable,
+QDateTimeEdit::down-arrow:editable {
+    qproperty-alignment: AlignTop;
+    image: url(./Dark/down.svg);
+    width: 8%;
+}
+
+/* Textedits etc */
+
+QLineEdit, QTextEdit, QPlainTextEdit {
+    background-color: palette(base);
+    padding: 5px 2px 5px 7px;
+    border: 2px solid rgb(255, 255, 255);
+}
+
+QLineEdit:hover,
+QTextEdit:hover,
+QPlainTextEdit:hover {
+    background-color: palette(base);
+    border: 2px solid palette(highlight);
+}
+
+QLineEdit:focus,
+QTextEdit:focus,
+QPlainTextEdit:focus {
+    background-color: palette(base);
+    border: 2px solid palette(highlight);
+}
+
+/* Spinbox and doubleSpinbox */
+
+QSpinBox,
+QDoubleSpinBox {
+    background-color: palette(base);
+    border: 2px solid rgb(255,255,255);
+    margin-right: 3px;
+    padding: 3px 0px 4px 5px;
+}
+
+QSpinBox:hover,
+QDoubleSpinBox:hover {
+    border-color: palette(highlight);
+}
+
+QSpinBox:focus,
+QDoubleSpinBox:focus {
+    border-color: palette(highlight);
+}
+
+QSpinBox::up-button, QDoubleSpinBox::up-button {
+    subcontrol-origin: padding;
+    subcontrol-position: top right; /* position at the top right corner */
+    right: 2px;
+    border-width: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-width: 0;
+}
+
+QSpinBox::down-button, QDoubleSpinBox::down-button {
+    subcontrol-origin: padding;
+    subcontrol-position: bottom right; /* position at the top right corner */
+    right: 2px;
+    border-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top-width: 0;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover, QDoubleSpinBox::up-button:hover, QDoubleSpinBox::down-button:hover {
+    border-color: palette(highlight);
+}
+
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed, QDoubleSpinBox::up-button:pressed, QDoubleSpinBox::down-button:pressed,
+QSpinBox::up-button:disabled, QSpinBox::up-button:off, QSpinBox::down-button:disabled, QSpinBox::down-button:off,
+QDoubleSpinBox::up-button:disabled, QDoubleSpinBox::up-button:off, QDoubleSpinBox::down-button:disabled, QDoubleSpinBox::down-button:off {
+    border-color: palette(mid);
+}
+
+QSpinBox::up-arrow, QDoubleSpinBox::up-arrow {
+    image: url(./Dark/up.svg);
+    width: 100%;
+    margin: 2px;
+}
+
+QSpinBox::down-arrow, QDoubleSpinBox::down-arrow {
+    image: url(./Dark/down.svg);
+    width: 100%;
+    padding: 2px;
+}
+
+
+/* Controls Dock */
+#controlsDock QPushButton {
+    margin: 1px;
+}
+
+#streamButton,
+#recordButton,
+QPushButton[themeID="replayBufferButton"],
+#broadcastButton {
+    padding: 10px;
+}
+
+#streamButton:!hover:!pressed:checked,
+#recordButton:!hover:!pressed:checked,
+QPushButton[themeID="replayBufferButton"]:!hover:!pressed:checked,
+QPushButton[themeID="vcamButton"]:!hover:!pressed:checked,
+#modeSwitch:!hover:!pressed:checked,
+#broadcastButton:!hover:!pressed:checked,
+#streamButton:hover:!pressed:checked,
+#recordButton:hover:!pressed:checked,
+QPushButton[themeID="replayBufferButton"]:!pressed:checked,
+QPushButton[themeID="vcamButton"]:!pressed:checked,
+#modeSwitch:hover:!pressed:checked,
+#broadcastButton:hover:!pressed:checked {
+    border-color: palette(highlight);
+}
+
+
+/* Buttons */
+
+QPushButton {
+    color: palette(text);
+    border: 2px solid rgb(255, 255, 255);
+    min-height: 18px;
+    padding: 5px 15px;
+}
+
+QPushButton:flat,
+QPushButton:checked,
+QPushButton:hover,
+QPushButton:pressed {
+    color: palette(highlight);
+    border-color: palette(highlight);
+}
+
+QPushButton:disabled, QToolButton:disabled {
+    border-color: rgb(135, 135, 135);
+}
+
+QPushButton::menu-indicator {
+    image: url(./Dark/down.svg);
+    subcontrol-position: right;
+    subcontrol-origin: padding;
+    width: 25px;
+}
+
+/* Sliders */
+
+QSlider::groove:horizontal {
+    background-color: palette(window);
+    height: 4px;
+    border: none;
+}
+
+QSlider::handle:horizontal {
+    background-color: palette(text);
+    border: 1px solid palette(mid);
+    height: 10px;
+    width: 18px;
+    margin: -3px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+}
+
+QSlider::handle:horizontal:pressed {
+    background-color: palette(text);
+}
+
+QSlider::sub-page:horizontal {
+    background-color: palette(highlight);
+}
+
+QSlider::sub-page:horizontal:disabled {
+    background-color: palette(window);
+}
+
+QSlider::groove:vertical {
+    background-color: palette(window);
+    width: 4px;
+    border: none;
+}
+
+QSlider::handle:vertical {
+    background-color: palette(text);
+    border: 1px solid palette(mid);
+    width: 10px;
+    height: 18px;
+    margin: 0 -3px; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+}
+
+QSlider::handle:vertical:pressed {
+    background-color: palette(text);
+}
+
+QSlider::add-page:vertical {
+    background-color: palette(highlight);
+}
+
+QSlider::add-page:vertical:disabled {
+    background-color: palette(window);
+}
+
+QSlider::handle:hover {
+    background-color: rgb(200,199,200);
+}
+
+QSlider::handle:disabled {
+    background-color: rgb(68,75,110);
+}
+
+/* Volume Control */
+
+#stackedMixerArea QPushButton {
+    min-width: 16px;
+    padding: 4px 8px;
+}
+
+VolumeMeter {
+	qproperty-backgroundNominalColor: darkgreen;
+	qproperty-backgroundWarningColor: darkorange;
+	qproperty-backgroundErrorColor: darkred;
+	qproperty-foregroundNominalColor: lime;
+	qproperty-foregroundWarningColor: yellow;
+	qproperty-foregroundErrorColor: red;
+	qproperty-magnitudeColor: palette(window);
+	qproperty-majorTickColor: palette(window-text);
+	qproperty-minorTickColor: palette(mid);
+}
+
+/* Status Bar */
+
+QStatusBar::item {
+    border: none;
+}
+
+/* Table View */
+
+QTableView {
+    background: palette(base);
+    gridline-color: palette(light);
+}
+
+QTableView::item {
+    margin: 0px;
+    padding: 0px;
+}
+
+QTableView QLineEdit {
+    background: palette(mid);
+    padding: 0;
+    margin: 0;
+}
+
+QTableView QPushButton,
+QTableView QToolButton {
+    margin: 1px 1px 2px;
+}
+
+QHeaderView::section {
+    background-color: palette(base);
+    color: palette(text);
+    border: none;
+    border-left: 1px solid palette(window);
+    border-right: 1px solid palette(window);
+    padding: 2px 4px;
+    margin-bottom: 2px;
+}
+
+/* Mute CheckBox */
+
+MuteCheckBox::indicator:checked {
+    image: url(./Dark/mute.svg);
+}
+
+MuteCheckBox::indicator:indeterminate {
+    image: url(./Dark/unassigned.svg);
+}
+
+MuteCheckBox::indicator:unchecked {
+    image: url(./Dark/settings/audio.svg);
+}
+
+OBSHotkeyLabel[hotkeyPairHover=true] {
+    border-color: palette(highlight);
+}
+
+/* Label warning/error */
+
+QLabel#warningLabel {
+    color: rgb(192,128,0);
+    font-weight: bold;
+}
+
+QLabel#errorLabel {
+    color: rgb(192,0,0);
+    font-weight: bold;
+}
+
+* [themeID="warning"] {
+    color: rgb(192,128,0);
+    font-weight: bold;
+}
+
+* [themeID="error"] {
+    color: rgb(192,0,0);
+    font-weight: bold;
+}
+
+* [themeID="good"] {
+    color: rgb(0,192,0);
+    font-weight: bold;
+}
+
+/* About dialog */
+
+* [themeID="aboutName"] {
+    font-size: 26pt;
+    font-weight: bold;
+}
+
+* [themeID="aboutVersion"] {
+    font-size: 12pt;
+    margin-bottom: 20px;
+}
+
+* [themeID="aboutInfo"] {
+    margin-bottom: 20px;
+}
+
+* [themeID="aboutHLayout"] {
+    background-color: palette(base);
+}
+
+/* Filters Window */
+
+OBSBasicFilters #widget,
+OBSBasicFilters #widget_2 {
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 4px;
+}
+
+OBSBasicFilters #widget QPushButton,
+OBSBasicFilters #widget_2 QPushButton {
+    min-width: 16px;
+    padding: 4px 8px;
+    margin-top: 0px;
+}
+
+/* Preview/Program labels */
+
+* [themeID="previewProgramLabels"] {
+    font-size: 14pt;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 4px;
+}
+
+/* Settings Icons */
+
+OBSBasicSettings {
+    qproperty-generalIcon: url(./Dark/settings/general.svg);
+    qproperty-streamIcon: url(./Dark/settings/stream.svg);
+    qproperty-outputIcon: url(./Dark/settings/output.svg);
+    qproperty-audioIcon: url(./Dark/settings/audio.svg);
+    qproperty-videoIcon: url(./Dark/settings/video.svg);
+    qproperty-hotkeysIcon: url(./Dark/settings/hotkeys.svg);
+    qproperty-accessibilityIcon: url(./Dark/settings/accessibility.svg);
+    qproperty-advancedIcon: url(./Dark/settings/advanced.svg);
+}
+
+QCheckBox::indicator,
+QGroupBox::indicator {
+	width: 14px;
+	height: 14px;
+    border: 2px solid rgb(255, 255, 255);
+}
+
+QGroupBox::indicator {
+	margin-left: 2px;
+}
+
+QCheckBox::indicator:unchecked,
+QGroupBox::indicator:unchecked,
+QCheckBox::indicator:unchecked:hover,
+QGroupBox::indicator:unchecked:hover {
+	border-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:checked,
+QGroupBox::indicator:checked {
+	image: url(./Underteyl/checkbox_checked.png);
+    border-color: rgb(255, 251, 0);
+}
+
+QCheckBox::indicator:checked:hover,
+QGroupBox::indicator:checked:hover {
+    border-color: rgb(255, 255, 0);
+}
+
+QCheckBox::indicator:checked:disabled,
+QGroupBox::indicator:checked:disabled {
+	image: url(./Underteyl/checkbox_checked_disabled.png);
+	border-color: rgb(153, 150, 0);
+}
+
+QCheckBox::indicator:unchecked:disabled,
+QGroupBox::indicator:unchecked:disabled {
+	border-color: rgb(135, 135, 135);
+}
+
+/* Locked CheckBox */
+
+LockedCheckBox {
+    outline: none;
+    background: transparent;
+}
+
+LockedCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+}
+
+LockedCheckBox::indicator:checked,
+LockedCheckBox::indicator:checked:hover {
+    image: url(./Dark/locked.svg);
+}
+
+LockedCheckBox::indicator:unchecked,
+LockedCheckBox::indicator:unchecked:hover {
+    image: url(:res/images/unlocked.svg);
+}
+
+/* Visibility CheckBox */
+
+VisibilityCheckBox {
+    outline: none;
+    background: transparent;
+}
+
+VisibilityCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+}
+
+VisibilityCheckBox::indicator:checked,
+VisibilityCheckBox::indicator:checked:hover {
+    image: url(./Dark/visible.svg);
+}
+
+VisibilityCheckBox::indicator:unchecked,
+VisibilityCheckBox::indicator:unchecked:hover {
+    image: url(:res/images/invisible.svg);
+}
+
+* [themeID="revertIcon"] {
+    qproperty-icon: url(./Dark/revert.svg);
+}
+
+QPushButton#extraPanelDelete {
+    background-color: palette(mid);
+    margin: 0;
+    padding: 0;
+}
+
+QPushButton#extraPanelDelete:hover {
+    background-color: rgb(68,75,110);
+}
+
+QPushButton#extraPanelDelete:pressed {
+    background-color: palette(dark);
+}
+
+/* Mute CheckBox */
+
+MuteCheckBox {
+	outline: none;
+}
+
+MuteCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+}
+
+MuteCheckBox::indicator:checked {
+	image: url(./Dark/mute.svg);
+}
+
+MuteCheckBox::indicator:unchecked {
+	image: url(./Dark/settings/audio.svg);
+}
+
+MuteCheckBox::indicator:unchecked:hover {
+	image: url(./Dark/settings/audio.svg);
+}
+
+MuteCheckBox::indicator:unchecked:focus {
+	image: url(./Dark/settings/audio.svg);
+}
+
+MuteCheckBox::indicator:checked:hover {
+	image: url(./Dark/mute.svg);
+}
+
+MuteCheckBox::indicator:checked:focus {
+	image: url(./Dark/mute.svg);
+}
+
+MuteCheckBox::indicator:checked:disabled {
+	image: url(./Dark/mute.svg);
+}
+
+MuteCheckBox::indicator:unchecked:disabled {
+	image: url(./Dark/settings/audio.svg);
+}
+
+#hotkeyFilterReset {
+    margin-top: 0px;
+}
+
+OBSHotkeyWidget {
+    padding: 8px 0px;
+    margin: 2px 0px;
+}
+
+OBSHotkeyLabel {
+    padding: 4px 0px;
+}
+
+OBSHotkeyLabel[hotkeyPairHover=true] {
+	color: palette(highlight);
+}
+
+OBSHotkeyWidget QPushButton {
+    min-width: 16px;
+    padding: 4px 4px;
+    margin-top: 0px;
+    margin-left: 4px;
+}
+
+
+/* Sources List Group Collapse Checkbox */
+
+SourceTreeSubItemCheckBox {
+    background: transparent;
+    outline: none;
+    padding: 0px;
+}
+
+SourceTreeSubItemCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+}
+
+SourceTreeSubItemCheckBox::indicator:checked,
+SourceTreeSubItemCheckBox::indicator:checked:hover {
+    image: url(./Dark/expand.svg);
+}
+
+SourceTreeSubItemCheckBox::indicator:unchecked,
+SourceTreeSubItemCheckBox::indicator:unchecked:hover {
+    image: url(./Dark/collapse.svg);
+}
+
+/* Source Icons */
+
+OBSBasic {
+    qproperty-imageIcon: url(./Dark/sources/image.svg);
+    qproperty-colorIcon: url(./Dark/sources/brush.svg);
+    qproperty-slideshowIcon: url(./Dark/sources/slideshow.svg);
+    qproperty-audioInputIcon: url(./Dark/sources/microphone.svg);
+    qproperty-audioOutputIcon: url(./Dark/settings/audio.svg);
+    qproperty-desktopCapIcon: url(./Dark/settings/video.svg);
+    qproperty-windowCapIcon: url(./Dark/sources/window.svg);
+    qproperty-gameCapIcon: url(./Dark/sources/gamepad.svg);
+    qproperty-cameraIcon: url(./Dark/sources/camera.svg);
+    qproperty-textIcon: url(./Dark/sources/text.svg);
+    qproperty-mediaIcon: url(./Dark/sources/media.svg);
+    qproperty-browserIcon: url(./Dark/sources/globe.svg);
+    qproperty-groupIcon: url(./Dark/sources/group.svg);
+    qproperty-sceneIcon: url(./Dark/sources/scene.svg);
+    qproperty-defaultIcon: url(./Dark/sources/default.svg);
+    qproperty-audioProcessOutputIcon: url(./Dark/sources/windowaudio.svg);
+}
+
+/* Scene Tree Grid Mode */
+
+SceneTree {
+    qproperty-gridItemWidth: 154;
+    qproperty-gridItemHeight: 31;
+}
+
+*[gridMode="true"] SceneTree::item {
+    color: palette(text);
+    background-color: palette(button);
+    margin: 2px;
+}
+
+*[gridMode="true"] SceneTree::item:selected {
+    background-color: rgb(51,69,163);
+}
+
+*[gridMode="true"] SceneTree::item:checked {
+    background-color: rgb(51,69,163);
+}
+
+*[gridMode="true"] SceneTree::item:hover {
+    background-color: rgb(145,76,103);
+}
+
+/* Save icon */
+
+* [themeID="replayIconSmall"] {
+    qproperty-icon: url(./Dark/save.svg);
+}
+
+/* Studio Mode T-Bar */
+
+QSlider[themeID="tBarSlider"] {
+	height: 24px;
+}
+
+QSlider::groove:horizontal[themeID="tBarSlider"] {
+	border: 1px solid #4c4c4c;
+	height: 5px;
+	background: palette(dark);
+}
+
+QSlider::sub-page:horizontal[themeID="tBarSlider"] {
+	background: palette(dark);
+	border: 1px solid #4c4c4c;
+}
+
+QSlider::handle:horizontal[themeID="tBarSlider"] {
+	background-color: #d2d2d2;
+	width: 12px;
+	height: 24px;
+	margin: -24px 0px;
+}
+
+/* Media icons */
+
+* [themeID="playIcon"] {
+    qproperty-icon: url(./Dark/media/media_play.svg);
+}
+
+* [themeID="pauseIcon"] {
+    qproperty-icon: url(./Dark/media/media_pause.svg);
+}
+
+* [themeID="restartIcon"] {
+    qproperty-icon: url(./Dark/media/media_restart.svg);
+}
+
+* [themeID="stopIcon"] {
+    qproperty-icon: url(./Dark/media/media_stop.svg);
+}
+
+* [themeID="nextIcon"] {
+    qproperty-icon: url(./Dark/media/media_next.svg);
+}
+
+* [themeID="previousIcon"] {
+    qproperty-icon: url(./Dark/media/media_previous.svg);
+}
+
+/* YouTube Integration */
+OBSYoutubeActions {
+    qproperty-thumbPlaceholder: url(./Dark/sources/image.svg);
+}
+
+#ytEventList QLabel {
+    color: palette(text);
+    background-color: palette(base);
+    border: none;
+    padding: 4px 20px;
+}
+
+#ytEventList QLabel:hover {
+    background-color: rgb(145,76,103);
+}
+
+#ytEventList QLabel[isSelectedEvent=true] {
+    background-color: palette(highlight);
+    border: none;
+}
+
+#ytEventList QLabel[isSelectedEvent=true]:hover {
+    background-color: palette(highlight);
+    color: palette(text);
+}
+
+/* Calendar Widget */
+QDateTimeEdit::down-arrow {
+    qproperty-alignment: AlignTop;
+    image: url(./Dark/down.svg);
+    width: 100%;
+}
+
+QDateTimeEdit:on {
+    background-color: palette(mid);
+}
+
+/* Calendar Top Bar */
+QCalendarWidget QWidget#qt_calendar_navigationbar {
+    background-color: palette(base);
+    padding: 4px 8px;
+}
+
+/* Calendar Top Bar Buttons */
+QCalendarWidget QToolButton {
+    background-color: palette(button);
+    padding: 2px 16px;
+    margin: 2px;
+}
+
+#qt_calendar_monthbutton::menu-indicator {
+    image: url(./Dark/down.svg);
+    subcontrol-position: right;
+    padding-top: 2px;
+    padding-right: 6px;
+    height: 10px;
+    width: 10px;
+}
+
+QCalendarWidget #qt_calendar_prevmonth {
+    padding: 2px;
+    qproperty-icon: url(./Dark/left.svg);
+    icon-size: 16px, 16px;
+}
+
+QCalendarWidget #qt_calendar_nextmonth {
+    padding: 2px;
+    qproperty-icon: url(./Dark/right.svg);
+    icon-size: 16px, 16px;
+}
+
+/* Year spinbox */
+QCalendarWidget QSpinBox {
+    background-color: rgb(25,27,38);
+    border: none;
+    margin: 0px 3px 0px 0px;
+    padding: 4px 16px;
+}
+
+QCalendarWidget QSpinBox::up-button { subcontrol-origin: border; subcontrol-position: top right; width: 16px; }
+QCalendarWidget QSpinBox::down-button {subcontrol-origin: border; subcontrol-position: bottom right; width: 16px;}
+QCalendarWidget QSpinBox::up-arrow { width: 10px; height: 10px; }
+QCalendarWidget QSpinBox::down-arrow { width: 10px; height: 10px; }
+
+/* Days of the Week Bar */
+QCalendarWidget QWidget { alternate-background-color: palette(mid); }
+
+QCalendarWidget QAbstractItemView:enabled {
+    background-color: palette(base);
+    color: palette(text);
+}
+
+QCalendarWidget QAbstractItemView:disabled {
+    color: rgb(122,121,122);
+}
+
+/* VirtualCam Plugin Fixes */
+
+#VirtualProperties QWidget {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Disable icons on QDialogButtonBox */
+QDialogButtonBox {
+    dialogbuttonbox-buttons-have-icons: 0;
+}
+
+/* Stats dialog */
+OBSBasicStats {
+    background: palette(dark);
+}
+
+/* Advanced audio dialog */
+OBSBasicAdvAudio #scrollAreaWidgetContents {
+    background: palette(dark);
+}
